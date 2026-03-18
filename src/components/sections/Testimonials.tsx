@@ -50,7 +50,7 @@ export const Testimonials = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative bg-app-bg border-1.5 border-border-light rounded-3xl p-8 hover:shadow-sh-md hover:border-border-2 transition-all"
+                className="group relative hover:bg-white bg-app-bg border-1.5 border-border-light rounded-3xl p-8 hover:shadow-sh-md hover:border-border-2 transition-all"
               >
                 <Quote className="absolute top-6 right-6 text-gold opacity-15" size={38} />
                 <div className="flex gap-1 mb-6">
