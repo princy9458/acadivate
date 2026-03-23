@@ -48,7 +48,7 @@ export const Hero = () => {
   }, [next]);
 
   return (
-    <section className="relative h-[85vh]  overflow-hidden bg-navy">
+    <section data-annotate-id="home-hero-section" className="relative h-[85vh]  overflow-hidden bg-navy">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}

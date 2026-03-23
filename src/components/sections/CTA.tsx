@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const CTA = () => {
   return (
-    <section className="py-24 bg-linear-to-r from-primary-deep via-primary-dark to-primary relative overflow-hidden">
+    <section data-annotate-id="cta-section" className="py-24 bg-linear-to-r from-primary-deep via-primary-dark to-primary relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_65%_75%_at_88%_50%,rgba(197,147,58,0.1)_0%,transparent_65%)]" />
       <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
         <div className="text-[10px] font-bold tracking-[3px] uppercase text-white/60 mb-6">

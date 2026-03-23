@@ -71,7 +71,7 @@ export const Events = () => {
   const filteredEvents = EVENTS.filter(ev => filter === 'all' || ev.type === filter);
 
   return (
-    <section className="py-24 bg-app-bg relative overflow-hidden">
+    <section data-annotate-id="home-events-section" className="py-24 bg-app-bg relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, var(--color-navy) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 

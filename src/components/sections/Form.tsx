@@ -20,7 +20,7 @@ const AcadivateForm = () => {
             <form className="p-8 md:p-12 space-y-16">
 
                 {/* SECTION 1: CONTACT INFORMATION */}
-                <section>
+                <section data-annotate-id="form-personal-section">
                     <div className="flex items-center gap-4 mb-10">
                         <h2 className="text-2xl font-black text-[#00558d] uppercase tracking-tight italic">01. Contact Information</h2>
                         <div className="flex-grow h-[2px] bg-gradient-to-r from-blue-100 to-transparent"></div>
@@ -68,7 +68,7 @@ const AcadivateForm = () => {
                 </section>
 
                 {/* SECTION 2: NARRATIVE - Full Content */}
-                <section>
+                <section data-annotate-id="form-academic-section">
                     <div className="flex items-center gap-4 mb-8">
                         <h2 className="text-2xl font-black text-[#00558d] uppercase tracking-tight italic">02. Nomination Narrative</h2>
                         <div className="flex-grow h-[2px] bg-gradient-to-r from-blue-100 to-transparent"></div>
@@ -88,7 +88,7 @@ const AcadivateForm = () => {
                 </section>
 
                 {/* SECTION 3: LEADERSHIP & BACKGROUND */}
-                <section>
+                <section data-annotate-id="form-submission-section">
                     <div className="flex items-center gap-4 mb-8">
                         <h2 className="text-2xl font-black text-[#00558d] uppercase tracking-tight italic">03. Professional Background</h2>
                         <div className="flex-grow h-[2px] bg-gradient-to-r from-blue-100 to-transparent"></div>
@@ -107,7 +107,7 @@ const AcadivateForm = () => {
                 </section>
 
                 {/* SECTION 4: CLICKABLE SUPPORTING MATERIALS */}
-                <section>
+                <section data-annotate-id="form-declaration-section">
                     <div className="flex items-center gap-4 mb-10">
                         <h2 className="text-2xl font-black text-[#00558d] uppercase tracking-tight italic">04. Supporting Materials</h2>
                         <div className="flex-grow h-[2px] bg-gradient-to-r from-blue-100 to-transparent"></div>

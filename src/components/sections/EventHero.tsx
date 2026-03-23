@@ -6,7 +6,7 @@ import { Calendar, MapPin, Clock, ChevronRight } from 'lucide-react';
 
 export const EventHero = () => {
   return (
-    <section className="relative overflow-hidden bg-navy pt-32 pb-20 lg:pt-40 lg:pb-24">
+    <section data-annotate-id="event-hero-section" className="relative overflow-hidden bg-navy pt-32 pb-20 lg:pt-40 lg:pb-24">
       {/* Background Pattern */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-linear-to-br from-primary via-primary-dark to-primary-deep opacity-90" />

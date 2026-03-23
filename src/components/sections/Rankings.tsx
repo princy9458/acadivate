@@ -17,7 +17,7 @@ const RANKINGS = [
 
 export const Rankings = () => {
   return (
-    <section className="py-24 bg-app-bg">
+    <section data-annotate-id="home-rankings-section" className="py-24 bg-app-bg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div

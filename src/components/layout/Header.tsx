@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChevronDown, Menu, X, Award, Users, Calendar, BookOpen, GraduationCap, Trophy } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { Button } from '../ui/Button';
@@ -11,12 +11,12 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobOpen, setIsMobOpen] = React.useState(false);
   const pathname = usePathname();
-
+  const router = useRouter();
   React.useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
     handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);  
   }, []);
 
 
@@ -26,7 +26,7 @@ export const Header = () => {
   }, [pathname]);
 
   return (
-    <header className={cn(
+    <header data-annotate-id="site-header" className={cn(
       'sticky top-0 z-50 transition-all duration-300 border-b border-white/10',
       isScrolled
         ? 'bg-white shadow-sh-xl'
@@ -58,7 +58,9 @@ export const Header = () => {
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
-            <Button variant="ghost" className="hidden xl:flex text-black hover:bg-white/10">Sign In</Button>
+            <Button variant="ghost" className="hidden xl:flex text-black hover:bg-white/10"
+              onClick={() => router.push('/auth/signin')}
+            >Sign In</Button>
             <Button variant="primary" >Get Started</Button>
           </div>
 

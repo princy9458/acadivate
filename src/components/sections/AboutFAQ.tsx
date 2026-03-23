@@ -32,7 +32,7 @@ export const AboutFAQ = () => {
   const [openIndex, setOpenIndex] = React.useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-app-bg">
+    <section data-annotate-id="about-faq-section" className="py-24 bg-app-bg">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="text-[11px] font-bold tracking-[3px] text-gold uppercase mb-3">Common Questions</div>

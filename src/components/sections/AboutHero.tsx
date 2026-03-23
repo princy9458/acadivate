@@ -7,7 +7,7 @@ import { Button } from '../ui/Button';
 
 export const AboutHero = () => {
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-primary-deep via-primary-dark to-primary py-20 lg:py-24">
+    <section data-annotate-id="about-hero-section" className="relative overflow-hidden bg-linear-to-br from-primary-deep via-primary-dark to-primary py-20 lg:py-24">
       {/* Decorative elements */}
       <div className="absolute -right-48 -bottom-48 w-[700px] h-[700px] rounded-full border border-white/10 pointer-events-none" />
       <div className="absolute -right-24 -bottom-24 w-[500px] h-[500px] rounded-full border border-white/10 pointer-events-none" />

@@ -49,7 +49,7 @@ export const ConferenceTimeline = () => {
   const activeData = TIMELINE.find(t => t.year === activeYear)!;
 
   return (
-    <section className="py-24 bg-app-bg overflow-hidden">
+    <section data-annotate-id="conference-timeline-section" className="py-24 bg-app-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="text-[11px] font-bold tracking-[3px] text-gold uppercase mb-3">Our Journey</div>

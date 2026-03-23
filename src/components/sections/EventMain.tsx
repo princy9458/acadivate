@@ -42,7 +42,7 @@ export const EventMain = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-app-bg relative overflow-hidden">
+    <section data-annotate-id="event-main-section" className="py-16 lg:py-24 bg-app-bg relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
         <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, var(--color-navy) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
@@ -105,7 +105,7 @@ export const EventMain = () => {
                 <StatBox value="80+" label="Review Experts" />
               </div>
 
-              <section id="sec-overview">
+              <section id="sec-overview" data-annotate-id="event-overview-section">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Overview of ICAS 2026
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -133,7 +133,7 @@ export const EventMain = () => {
                 </div>
               </div>
 
-              <section id="sec-organizers">
+              <section id="sec-organizers" data-annotate-id="event-organizers-section">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Conference Organizers
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -170,7 +170,7 @@ export const EventMain = () => {
                 </div>
               </section>
 
-              <section id="sec-mission" className="mt-16">
+              <section id="sec-mission" data-annotate-id="event-mission-section" className="mt-16">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Academic Mission & Objectives
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -207,7 +207,7 @@ export const EventMain = () => {
                 </div>
               </div>
 
-              <section id="sec-themes">
+              <section id="sec-themes" data-annotate-id="event-themes-section">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Conference Themes & Topics
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -245,7 +245,7 @@ export const EventMain = () => {
                 </cite>
               </blockquote>
 
-              <section id="sec-venue">
+              <section id="sec-venue" data-annotate-id="event-venue-section">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Venue & Location
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -266,7 +266,7 @@ export const EventMain = () => {
                 </div>
               </section>
 
-              <section id="sec-submit" className="mt-16">
+              <section id="sec-submit" data-annotate-id="event-submit-section" className="mt-16">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Call for Papers & Submission
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -302,7 +302,7 @@ export const EventMain = () => {
                 </div>
               </section>
 
-              <section id="sec-reg" className="mt-16">
+              <section id="sec-reg" data-annotate-id="event-registration-section" className="mt-16">
                 <h2 className="text-3xl font-bold mb-6 relative inline-block">
                   Registration
                   <div className="absolute -bottom-2 left-0 w-12 h-1 bg-gold rounded-full" />
@@ -314,7 +314,7 @@ export const EventMain = () => {
             </div>
 
             {/* Discussion Section */}
-            <section className="pt-16 border-t border-border-light">
+            <section data-annotate-id="event-sidebar-section" className="pt-16 border-t border-border-light">
               <h2 className="text-2xl font-serif font-bold text-navy mb-10 flex items-center gap-4">
                 Discussion <span className="text-sm font-sans font-bold text-text-muted bg-bg-soft px-3 py-1 rounded-full">3 comments</span>
               </h2>

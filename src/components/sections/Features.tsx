@@ -36,12 +36,13 @@ const FEATURES = [
 
 export const Features = () => {
   return (
-    <section className="py-24 bg-app-bg">
+    <section data-annotate-id="home-features-section" className="py-24 bg-app-bg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-pale border border-gold/30 text-[9.5px] font-bold tracking-[2px] uppercase text-gold mb-4">
             Why Acadivate
           </div>
+          
           <h2 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-4">
             Why Choose <em className="italic font-serif">Acadivate</em>
           </h2>

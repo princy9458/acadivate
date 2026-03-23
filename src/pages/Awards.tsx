@@ -117,7 +117,7 @@ export const Awards = () => {
   return (
     <div className="bg-app-bg min-h-screen font-sans">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] bg-app-bg flex items-center overflow-hidden py-20">
+      <section data-annotate-id="awards-hero-section" className="relative min-h-[90vh] bg-app-bg flex items-center overflow-hidden py-20">
         <div className="absolute inset-0 opacity-5">
           <img src="https://picsum.photos/seed/heroawards/1920/1080" alt="Hero" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-linear-to-b from-app-bg via-app-bg/80 to-app-bg" />
@@ -195,7 +195,7 @@ export const Awards = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-24 bg-app-bg" id="categories">
+      <section data-annotate-id="awards-categories-section" className="py-24 bg-app-bg" id="categories">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-gold/10 border border-luxury-gold/20 text-[10px] font-bold tracking-[2px] uppercase text-luxury-gold mb-6">
@@ -259,7 +259,7 @@ export const Awards = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="awards-benefits-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-gold/10 border border-luxury-gold/20 text-[10px] font-bold tracking-[2px] uppercase text-luxury-gold mb-6">
@@ -311,7 +311,7 @@ export const Awards = () => {
       </section>
 
       {/* Jury Section */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="awards-process-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-gold/10 border border-luxury-gold/20 text-[10px] font-bold tracking-[2px] uppercase text-luxury-gold mb-6">
@@ -356,7 +356,7 @@ export const Awards = () => {
       </section>
 
       {/* Stats Band */}
-      <section className="py-20 bg-app-bg border-y border-border-light relative overflow-hidden">
+      <section data-annotate-id="awards-highlight-section" className="py-20 bg-app-bg border-y border-border-light relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-5" style={{ backgroundImage: 'radial-gradient(ellipse 65% 70% at 85%,rgba(18,167,207,.2) 0%,transparent 65%)' }} />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
@@ -370,7 +370,7 @@ export const Awards = () => {
       </section>
 
       {/* Winners Showcase */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="awards-jury-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-gold/10 border border-luxury-gold/20 text-[10px] font-bold tracking-[2px] uppercase text-luxury-gold mb-6">
@@ -436,7 +436,7 @@ export const Awards = () => {
       </section>
 
       {/* Nomination Form Section */}
-      <section className="py-24 bg-app-bg" id="nominate">
+      <section data-annotate-id="awards-nomination-section" className="py-24 bg-app-bg" id="nominate">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-start">
             <motion.div
@@ -544,7 +544,7 @@ export const Awards = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-app-bg relative overflow-hidden border-t border-border-light">
+      <section data-annotate-id="awards-testimonials-section" className="py-24 bg-app-bg relative overflow-hidden border-t border-border-light">
         <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #0a1830 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -585,7 +585,7 @@ export const Awards = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="awards-faq-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-luxury-gold/10 border border-luxury-gold/20 text-[10px] font-bold tracking-[2px] uppercase text-luxury-gold mb-6">
@@ -627,7 +627,7 @@ export const Awards = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-app-bg relative overflow-hidden border-t border-border-light">
+      <section data-annotate-id="awards-cta-section" className="py-24 bg-app-bg relative overflow-hidden border-t border-border-light">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/4 w-px h-full bg-linear-to-b from-transparent via-primary/20 to-transparent rotate-12" />
           <div className="absolute top-0 right-1/4 w-px h-full bg-linear-to-b from-transparent via-primary/20 to-transparent -rotate-12" />

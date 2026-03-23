@@ -7,7 +7,7 @@ import { cn } from '@/src/lib/utils';
 
 export const Footer = () => {
   return (
-    <footer className="bg-linear-to-r from-primary-deep via-primary-dark to-primary pt-16 border-t border-white/5">
+    <footer data-annotate-id="site-footer" className="bg-linear-to-r from-primary-deep via-primary-dark to-primary pt-16 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-14 border-b border-white/10">
           <div>

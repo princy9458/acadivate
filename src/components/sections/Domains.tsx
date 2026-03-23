@@ -49,7 +49,7 @@ const DOMAINS = [
 
 export const Domains = () => {
   return (
-    <section className="py-24 bg-app-bg">
+    <section data-annotate-id="domains-section" className="py-24 bg-app-bg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-pale border border-gold/30 text-[9.5px] font-bold tracking-[2px] uppercase text-gold mb-4">

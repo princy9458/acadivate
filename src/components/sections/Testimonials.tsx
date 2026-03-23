@@ -29,7 +29,7 @@ export const Testimonials = () => {
   const [current, setCurrent] = React.useState(0);
 
   return (
-    <section className="py-24 bg-app-bg overflow-hidden">
+    <section data-annotate-id="home-testimonials-section" className="py-24 bg-app-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-pale border border-gold/30 text-[9.5px] font-bold tracking-[2px] uppercase text-gold mb-4">

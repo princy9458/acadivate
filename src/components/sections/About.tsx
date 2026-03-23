@@ -66,7 +66,7 @@ export const About = () => {
   const activeTabData = TABS.find(t => t.id === activeTab)!;
 
   return (
-    <section id="foundation" className="py-24 bg-app-bg overflow-hidden">
+    <section id="foundation" data-annotate-id="foundation-section" className="py-24 bg-app-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           <motion.div
@@ -185,4 +185,3 @@ export const About = () => {
     </section>
   );
 };
-

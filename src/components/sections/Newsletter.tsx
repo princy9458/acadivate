@@ -5,7 +5,7 @@ import { Button } from '../ui/Button';
 
 export const Newsletter = () => {
   return (
-    <section className="py-20 bg-app-bg border-t border-gold/10 relative overflow-hidden">
+    <section data-annotate-id="newsletter-section" className="py-20 bg-app-bg border-t border-gold/10 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_55%_75%_at_92%_50%,rgba(197,147,58,0.09)_0%,transparent_65%)]" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

@@ -37,7 +37,7 @@ export const WorkshopsFDP = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-linear-to-r from-primary-deep to-primary overflow-hidden">
+      <section data-annotate-id="workshops-fdp-hero-section" className="relative py-20 lg:py-32 bg-linear-to-r from-primary-deep to-primary overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
           <img src="https://picsum.photos/seed/whero/800/800" alt="Pattern" className="w-full h-full object-cover" />
         </div>
@@ -69,7 +69,7 @@ export const WorkshopsFDP = () => {
       </section>
 
       {/* Features */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="workshops-fdp-overview-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-12">
             <FeatureItem 
@@ -92,7 +92,7 @@ export const WorkshopsFDP = () => {
       </section>
 
       {/* Workshops Grid */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="workshops-fdp-benefits-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Featured Programmes</h2>
@@ -143,7 +143,7 @@ export const WorkshopsFDP = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-24 bg-navy text-white overflow-hidden relative">
+      <section data-annotate-id="workshops-fdp-cta-section" className="py-24 bg-navy text-white overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '60px 60px' }} />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">

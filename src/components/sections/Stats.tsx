@@ -14,7 +14,7 @@ const STATS = [
 
 export const Stats = () => {
   return (
-    <section className="py-20 bg-linear-to-r from-primary-deep via-primary-dark to-primary relative overflow-hidden">
+    <section data-annotate-id="home-stats-section" className="py-20 bg-linear-to-r from-primary-deep via-primary-dark to-primary relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_65%_70%_at_85%_50%,rgba(197,147,58,0.1)_0%,transparent_65%)]" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-0">

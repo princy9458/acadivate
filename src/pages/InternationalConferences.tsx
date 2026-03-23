@@ -41,7 +41,7 @@ export const InternationalConferences = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-navy overflow-hidden">
+      <section data-annotate-id="international-conferences-hero-section" className="relative py-20 lg:py-32 bg-navy overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img src="https://picsum.photos/seed/confhero/1920/1080" alt="Hero" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-linear-to-b from-navy via-navy/80 to-navy" />
@@ -71,7 +71,7 @@ export const InternationalConferences = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="international-conferences-content-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {CONFERENCES.map((conf, idx) => (

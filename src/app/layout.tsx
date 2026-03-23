@@ -1,6 +1,10 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { AppShell } from '@/src/components/layout/AppShell';
+import { AnnotatorPlugin } from '@/src/components/annotationPlugin';
+
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'Acadivate',
@@ -10,6 +14,8 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+
+
   return (
     <html lang="en">
       
@@ -23,6 +29,8 @@ export default function RootLayout({
       </head>
       <body>
         <AppShell>{children}</AppShell>
+     
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

@@ -37,7 +37,7 @@ export const ResearchForums = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-linear-to-br from-navy via-primary-dark to-primary overflow-hidden">
+      <section data-annotate-id="research-forums-hero-section" className="relative py-20 lg:py-32 bg-linear-to-br from-navy via-primary-dark to-primary overflow-hidden">
         <div className="absolute -right-48 -bottom-48 w-[700px] h-[700px] rounded-full border border-white/5 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -91,7 +91,7 @@ export const ResearchForums = () => {
       </section>
 
       {/* Forums Grid */}
-      <section className="py-24 bg-app-bg">
+      <section data-annotate-id="research-forums-content-section" className="py-24 bg-app-bg">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">Explore Communities</h2>

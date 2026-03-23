@@ -48,7 +48,7 @@ const EXTRA_COUNTRIES = [
 
 export const GlobalFootprint = () => {
   return (
-    <section className="py-24 bg-navy relative overflow-hidden">
+    <section data-annotate-id="global-footprint-section" className="py-24 bg-navy relative overflow-hidden">
       {/* Decorative Globe Rings */}
       <div className="absolute -right-60 -top-60 w-[800px] h-[800px] rounded-full border border-white/5 pointer-events-none" />
       <div className="absolute -right-40 -top-40 w-[600px] h-[600px] rounded-full border border-white/5 pointer-events-none" />

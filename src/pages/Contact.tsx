@@ -18,7 +18,7 @@ export const Contact = () => {
 };
 
 const ContactHero = () => (
-  <section className="bg-linear-to-br from-primary-deep via-primary-dark to-primary relative overflow-hidden py-24 lg:py-28">
+  <section data-annotate-id="contact-hero-section" className="bg-linear-to-br from-primary-deep via-primary-dark to-primary relative overflow-hidden py-24 lg:py-28">
     {/* Decorative elements */}
     <div className="absolute -right-48 -bottom-48 w-[700px] h-[700px] rounded-full border border-white/10 pointer-events-none animate-pulse" />
     <div className="absolute -right-24 -bottom-24 w-[500px] h-[500px] rounded-full border border-white/10 pointer-events-none" />
@@ -96,7 +96,7 @@ const ContactMain = () => {
   const [charCount, setCharCount] = React.useState(0);
 
   return (
-    <section className="py-24 bg-app-bg relative overflow-hidden">
+    <section data-annotate-id="contact-details-section" className="py-24 bg-app-bg relative overflow-hidden">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#001F3F 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
@@ -258,7 +258,7 @@ const ContactInfoItem = ({ icon, label, sub, value, color }: { icon: React.React
 );
 
 const ContactActions = () => (
-  <section className="py-24 bg-app-bg relative overflow-hidden">
+  <section data-annotate-id="contact-form-section" className="py-24 bg-app-bg relative overflow-hidden">
     {/* Decorative elements */}
     <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'linear-gradient(45deg, #001F3F 25%, transparent 25%, transparent 50%, #001F3F 50%, #001F3F 75%, transparent 75%, transparent)', backgroundSize: '100px 100px' }} />
 
@@ -309,7 +309,7 @@ const ActionCard = ({ icon, title, desc, color }: { icon: React.ReactNode; title
 );
 
 const ContactGlobal = () => (
-  <section className="py-24 bg-navy relative overflow-hidden">
+  <section data-annotate-id="contact-cta-section" className="py-24 bg-navy relative overflow-hidden">
     {/* Decorative Globe Rings */}
     <div className="absolute -right-60 -top-60 w-[800px] h-[800px] rounded-full border border-white/5 pointer-events-none" />
     <div className="absolute -right-40 -top-40 w-[600px] h-[600px] rounded-full border border-white/5 pointer-events-none" />
