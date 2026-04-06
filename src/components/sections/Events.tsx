@@ -66,9 +66,60 @@ const FILTERS = [
 ];
 
 export const Events = () => {
+  const [events, setEvents] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(true);
   const [filter, setFilter] = React.useState('all');
 
-  const filteredEvents = EVENTS.filter(ev => filter === 'all' || ev.type === filter);
+  React.useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('/api/events');
+        const data = await response.json();
+        if (data.success) {
+          // Filter only published events and map to frontend structure
+          const mappedEvents = data.items
+            .filter((item: any) => item.status === 'Published')
+            .map((item: any) => {
+              const eventDate = new Date(item.eventDate);
+              return {
+                id: item._id,
+                type: (item.type || 'conference').toLowerCase(),
+                slug: item.slug,
+                title: item.title,
+                desc: item.description || '',
+                date: {
+                  day: eventDate.getDate().toString().padStart(2, '0'),
+                  month: eventDate.toLocaleString('en-US', { month: 'short' })
+                },
+                time: item.startTime,
+                location: item.location,
+                image: Array.isArray(item.imageUrl) && item.imageUrl.length > 0 
+                  ? item.imageUrl[0] 
+                  : (typeof item.imageUrl === 'string' ? item.imageUrl : 'assets/Image/conference.jpeg'),
+                tags: item.tags ? item.tags.split(',').map((t: string) => t.trim()) : []
+              };
+            });
+          setEvents(mappedEvents);
+        }
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const filteredEvents = events.filter(ev => filter === 'all' || ev.type === filter);
+
+  if (loading) {
+    return (
+      <div className="py-24 bg-app-bg flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <section data-annotate-id="home-events-section" className="py-24 bg-app-bg relative overflow-hidden">
@@ -109,58 +160,64 @@ export const Events = () => {
         <div className="grid grid-cols-1 xl:grid-cols-[1fr_328px] gap-8 items-start">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AnimatePresence mode="popLayout">
-              {filteredEvents.map((ev) => (
-                <motion.div
-                  key={ev.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="group bg-app-bg border-1.5 border-border-light rounded-[2rem] overflow-hidden hover:shadow-sh-lg hover:border-gold/30 transition-all duration-500"
-                >
-                  <div className="relative h-56 overflow-hidden">
-                    <img src={ev.image} alt={ev.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute top-4 left-4 bg-gold rounded-2xl p-3 text-center min-w-[64px] shadow-sh-sm">
-                      <div className="text-2xl font-extrabold text-navy leading-none">{ev.date.day}</div>
-                      <div className="text-[10px] font-bold tracking-wider uppercase text-navy/60 mt-1">{ev.date.month}</div>
-                    </div>
-                    <div className="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-navy/60 border border-white/20 backdrop-blur-md text-[9px] font-bold tracking-wider uppercase text-white">
-                      {ev.type}
-                    </div>
-                  </div>
-                  <div className="p-8">
-                    <div className="flex flex-wrap gap-4 mb-4">
-                      <div className="flex items-center gap-1.5 text-[11px] font-bold text-text-muted uppercase tracking-wider">
-                        <Clock size={14} className="text-gold" /> {ev.time}
+              {filteredEvents.length > 0 ? (
+                filteredEvents.map((ev) => (
+                  <motion.div
+                    key={ev.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    className="group bg-app-bg border-1.5 border-border-light rounded-[2rem] overflow-hidden hover:shadow-sh-lg hover:border-gold/30 transition-all duration-500"
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <img src={ev.image} alt={ev.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <div className="absolute top-4 left-4 bg-gold rounded-2xl p-3 text-center min-w-[64px] shadow-sh-sm">
+                        <div className="text-2xl font-extrabold text-navy leading-none">{ev.date.day}</div>
+                        <div className="text-[10px] font-bold tracking-wider uppercase text-navy/60 mt-1">{ev.date.month}</div>
                       </div>
-                      <div className="flex items-center gap-1.5 text-[11px] font-bold text-text-muted uppercase tracking-wider">
-                        <MapPin size={14} className="text-gold" /> {ev.location}
+                      <div className="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-navy/60 border border-white/20 backdrop-blur-md text-[9px] font-bold tracking-wider uppercase text-white">
+                        {ev.type}
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-navy mb-3 leading-tight group-hover:text-gold transition-colors duration-300">
-                      {ev.title}
-                    </h3>
-                    <p className="text-[14px] text-text-muted leading-relaxed mb-8 line-clamp-2">
-                      {ev.desc}
-                    </p>
-                    <div className="flex items-center justify-between gap-4 pt-6 border-t border-border-light">
-                      <div className="flex gap-1.5">
-                        {ev.tags.slice(0, 1).map(tag => (
-                          <span key={tag} className="text-[9px] font-bold px-3 py-1 rounded-full bg-bg-soft border border-border-light text-text-muted uppercase tracking-wider">
-                            {tag}
-                          </span>
-                        ))}
+                    <div className="p-8">
+                      <div className="flex flex-wrap gap-4 mb-4">
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-text-muted uppercase tracking-wider">
+                          <Clock size={14} className="text-gold" /> {ev.time}
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-text-muted uppercase tracking-wider">
+                          <MapPin size={14} className="text-gold" /> {ev.location}
+                        </div>
                       </div>
-                      <Link href={`/events/${ev.slug}`}>
-                        <Button variant="primary" size="sm" className="rounded-xl  px-5 py-2.5 shadow-sh-sm group/btn">
-                          More Details <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
+                      <h3 className="text-xl font-bold text-navy mb-3 leading-tight group-hover:text-gold transition-colors duration-300">
+                        {ev.title}
+                      </h3>
+                      <p className="text-[14px] text-text-muted leading-relaxed mb-8 line-clamp-2">
+                        {ev.desc}
+                      </p>
+                      <div className="flex items-center justify-between gap-4 pt-6 border-t border-border-light">
+                        <div className="flex gap-1.5">
+                          {ev.tags.slice(0, 1).map((tag: any) => (
+                            <span key={tag} className="text-[9px] font-bold px-3 py-1 rounded-full bg-bg-soft border border-border-light text-text-muted uppercase tracking-wider">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <Link href={`/events/${ev.slug}`}>
+                          <Button variant="primary" size="sm" className="rounded-xl px-5 py-2.5 shadow-sh-sm group/btn">
+                            More Details <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))
+              ) : (
+                <div className="col-span-full text-center py-20 bg-bg-soft rounded-[2rem] border border-dashed border-border-light">
+                  <p className="text-lg text-text-muted">No published events found.</p>
+                </div>
+              )}
             </AnimatePresence>
           </div>
 
@@ -190,7 +247,7 @@ export const Events = () => {
                       'text-[10px] px-2.5 py-0.5 rounded-full font-bold',
                       filter === f.id ? 'bg-gold/20 text-gold' : 'bg-bg-2 text-text-muted'
                     )}>
-                      {f.id === 'all' ? '32' : '8'}
+                      {f.id === 'all' ? events.length : events.filter(e => e.type === f.id).length}
                     </span>
                   </button>
                 ))}

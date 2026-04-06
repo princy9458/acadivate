@@ -189,17 +189,22 @@ function LoginForm({isadmin}:props) {
 
       <div className="relative z-10 w-full max-w-md">
         <div className="mb-8 flex items-center justify-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary shadow-sh-md">
+          {/* <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary shadow-sh-md">
             <Building2 className="h-5 w-5 text-white" />
-          </div>
-          <div className="text-center">
+          </div> */}
+          {/* <div className="text-center">
             <span className="block font-serif text-2xl font-semibold tracking-tight text-navy">
               Acadivate
             </span>
             <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-text-muted">
               Admin Portal
             </span>
-          </div>
+          </div> */}
+
+          <div>
+            <img src="/assets/Image/Acadivate logo-transpernt.png" width="150" height="120" alt="Logo"/>
+            </div>
+
         </div>
 
         <div className="overflow-hidden rounded-[2rem] border border-border-light bg-white/90 shadow-sh-xl backdrop-blur-sm">

@@ -1,11 +1,11 @@
 'use client';
 
-import { EventDetails } from '@/src/pages/EventDetails';
-import { Awards } from '@/src/pages/Awards';
-import { WorkshopsFDP } from '@/src/pages/WorkshopsFDP';
-import { ResearchForums } from '@/src/pages/ResearchForums';
-import { InternationalConferences } from '@/src/pages/InternationalConferences';
-import { UpcomingEvents } from '@/src/pages/UpcomingEvents';
+import EventDetails from '@/src/pages/EventDetails';
+import Awards from '@/src/pages/Awards';
+import WorkshopsFDP from '@/src/pages/WorkshopsFDP';
+import ResearchForums from '@/src/pages/ResearchForums';
+import InternationalConferences from '@/src/pages/InternationalConferences';
+import UpcomingEvents from '@/src/pages/UpcomingEvents';
 
 export function EventRouteResolver({ slug }: { slug: string }) {
   console.log("EventRouteResolver", slug)

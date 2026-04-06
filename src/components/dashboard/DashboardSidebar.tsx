@@ -1,100 +1,149 @@
 'use client';
 
+import * as React from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { 
+  ArrowRight, LogOut, Settings, Bell, ChevronUp, User 
+} from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { dashboardModuleList, dashboardNavItems } from './dashboardModules';
+import { useAppSelector, useAppDispatch } from '@/src/hook/hooks';
+import { logout } from '@/src/hook/auth/authSlice';
+import { useRouter } from 'next/navigation';
 
 export function DashboardSidebar({ currentPath }: { currentPath: string }) {
+  const [isProfileOpen, setIsProfileOpen] = React.useState(false);
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 
-  const moduleStats = dashboardModuleList.map((module) => ({
-    label: module.title,
-    value: String(module.initialRows.length),
-    icon: module.icon,
-  }));
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/login');
+  };
 
   return (
-    <aside className="w-full border-b border-border-light bg-white px-5 py-6 lg:min-h-screen lg:w-72 lg:border-b-0 lg:border-r">
-      <Link href="/dashboard" className="flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-br from-primary-dark via-primary to-gold text-white shadow-sh-md">
-          <span className="text-lg font-extrabold">A</span>
+    <aside className="sticky top-0 hidden h-screen w-72 flex-col border-r border-border-light bg-white lg:flex shrink-0">
+      <div className="flex h-full flex-col px-5 py-6"> {/* Removed overflow-hidden from here */}
+        {/* Sidebar Header */}
+        <div className="shrink-0 pb-8">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary border border-b text-white shadow-sh-md">
+              <span className="text-lg font-extrabold">A</span>
+            </div>
+            <div>
+              <p className="text-lg font-bold text-navy">Acadivate</p>
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-text-muted">
+                Content Desk
+              </p>
+            </div>
+          </Link>
         </div>
-        <div>
-          <p className="text-lg font-bold text-navy">Acadivate</p>
-          <p className="text-xs font-medium uppercase tracking-[0.28em] text-text-muted">
-            Content Desk
-          </p>
-        </div>
-      </Link>
 
-      <div className="mt-8 space-y-7">
-        <div>
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-text-subtle">
-            Content Modules
-          </p>
-          <div className="space-y-2">
-            {dashboardNavItems.map((link) => {
-              const active = isActive(link.href);
+        {/* Scrollable Navigation Content */}
+        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar min-h-0 overflow-x-visible">
+          <div className="space-y-7 pb-4">
+            <div>
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-text-subtle">
+                Content Modules
+              </p>
+              <div className="space-y-2">
+                {dashboardNavItems.map((link) => {
+                  const active = isActive(link.href);
 
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={cn(
-                    'flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition-all',
-                    active
-                      ? 'bg-linear-to-r from-primary-deep via-primary-dark to-primary text-white shadow-sh-md'
-                      : 'text-navy hover:bg-bg-soft'
-                  )}
-                >
-                  <span className="flex items-center gap-3">
-                    <link.icon size={18} className={active ? 'text-gold-3' : 'text-primary-dark'} />
-                    <span className="text-sm font-semibold">{link.label}</span>
-                  </span>
-                  {/* <span
-                    className={cn(
-                      'rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em]',
-                      active ? 'bg-white/15 text-white' : 'bg-gold-pale text-gold'
-                    )}
-                  >
-                    {link.badge}
-                  </span> */}
-                </Link>
-              );
-            })}
+                  return (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className={cn(
+                        'flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition-all',
+                        active
+                          ? 'bg-linear-to-r from-primary-deep via-primary-dark to-primary text-white shadow-sh-md'
+                          : 'text-navy hover:bg-bg-soft'
+                      )}
+                    >
+                      <span className="flex items-center gap-3">
+                        <link.icon size={18} className={active ? 'text-gold-3' : 'text-primary-dark'} />
+                        <span className="text-sm font-semibold">{link.label}</span>
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* <div className="mt-8 rounded-[2rem] border border-primary-dark/10 bg-linear-to-br from-navy via-primary-deep to-primary-dark p-5 text-white shadow-sh-lg">
-        <p className="text-sm font-bold uppercase tracking-[0.24em] text-gold-3/80">
-          Module focus
-        </p>
-        <h3 className="mt-3 text-2xl font-extrabold leading-tight">
-          Separate CRUD pages for events, awards, nominations, rankings, and leads.
-        </h3>
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          {moduleStats.map((card) => (
-            <div
-              key={card.label}
-              className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-sm"
-            >
-              <div>
-                <p className="text-xs text-white/65">{card.label}</p>
-                <p className="text-lg font-bold">{card.value}</p>
+        {/* Fixed User Profile Section at Bottom with Pop-out Dropdown */}
+        <div className="mt-auto shrink-0 pt-6 border-t border-border-light relative">
+          {/* Dropdown Menu - Now Floating to the Right */}
+          {isProfileOpen && (
+            <div className="absolute left-[calc(100%+1rem)] bottom-0 w-64 animate-in fade-in slide-in-from-left-4 zoom-in-95 duration-300 z-[100]">
+              <div className="rounded-[2rem] border border-border-light bg-white p-3 shadow-[0_20px_50px_rgba(0,0,0,0.15)] ring-1 ring-black/5">
+                <div className="mb-2 flex items-center gap-3 rounded-2xl bg-bg-soft p-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-sh-sm">
+                    <User size={20} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-bold text-navy">{user?.userName || 'Admin User'}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-primary">{user?.role || 'SUPERADMIN'}</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-1">
+                  <Link
+                    href="/dashboard/settings"
+                    onClick={() => setIsProfileOpen(false)}
+                    className="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-text-muted transition hover:bg-bg-soft hover:text-navy"
+                  >
+                    <Settings size={16} />
+                    Account Settings
+                  </Link>
+                  <div className="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold text-text-muted transition hover:bg-bg-soft hover:text-navy cursor-pointer">
+                    <span className="flex items-center gap-3">
+                      <Bell size={16} />
+                      Notifications
+                    </span>
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sh-sm">2</span>
+                  </div>
+                </div>
+                
+                <div className="my-2 h-px bg-border-light" />
+                
+                <button
+                  onClick={handleLogout}
+                  className="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-crimson transition hover:bg-crimson/5"
+                >
+                  <LogOut size={16} />
+                  Log out
+                </button>
               </div>
-              <card.icon size={18} className="text-gold-3" />
             </div>
-          ))}
+          )}
+
+          <button
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
+            className={cn(
+              "flex w-full items-center gap-3 rounded-2xl border border-border-light bg-bg-soft/60 p-3 transition-all",
+              isProfileOpen ? "border-primary bg-white shadow-sh-sm ring-1 ring-primary/10" : "hover:border-primary-dark/20 hover:bg-white hover:shadow-sh-xs"
+            )}
+          >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-deep text-white shadow-sh-sm">
+              <User size={22} />
+            </div>
+            <div className="min-w-0 flex-1 text-left">
+              <p className="truncate text-sm font-bold text-navy">{user?.userName || 'Admin'}</p>
+              <p className="truncate text-[11px] font-medium text-text-subtle">admin@nestcraft.com</p>
+            </div>
+            <ChevronUp 
+              size={16} 
+              className={cn("text-text-subtle transition-transform duration-300", isProfileOpen ? "rotate-90" : "-rotate-90")} 
+            />
+          </button>
         </div>
-        <Link
-          href="/dashboard/events?open=form#events-form"
-          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-gold px-4 py-3 text-sm font-bold text-white transition hover:bg-gold-2"
-        >
-          Open events form <ArrowRight size={16} />
-        </Link>
-      </div> */}
+      </div>
     </aside>
   );
 }

@@ -13,14 +13,29 @@ import { logout } from '@/src/hook/auth/authSlice';
 export const Header = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobOpen, setIsMobOpen] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  const [logo, setLogo] = React.useState('/assets/Image/Acadivate logo-transpernt.png');
   const pathname = usePathname();
   const router = useRouter();
+  
   React.useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setIsScrolled(window.scrollY > 24);
     handleScroll();
     window.addEventListener('scroll', handleScroll);
+    
+    // Fetch dynamic logo
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.settings.logo) {
+          setLogo(data.settings.logo);
+        }
+      });
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const dispatch=useDispatch()
 const {user,token,isAuthenticated}=useSelector((state:RootState)=>state.auth);
 
@@ -43,7 +58,7 @@ const {user,token,isAuthenticated}=useSelector((state:RootState)=>state.auth);
       <div className="max-w-7xl mx-auto px-6 h-[76px] flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-3 shrink-0">
           <div>
-            <img src="/assets/Image/Acadivate logo-transpernt.png" width={150} height={120} alt="Logo" />
+            <img src={logo} width={150} height={40} alt="Logo" className="object-contain" />
           </div>
         </Link>
 
@@ -66,11 +81,17 @@ const {user,token,isAuthenticated}=useSelector((state:RootState)=>state.auth);
 
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
-         {  !isAuthenticated? <Button variant="ghost" className="hidden xl:flex text-black hover:bg-white/10"
-              onClick={() => router.push('/auth/signin')}
-            >Sign In</Button>:<Button variant="ghost" className="hidden xl:flex text-black hover:bg-white/10"
-              onClick={handleLogout}
-            >Sign out</Button>}
+            {mounted && (
+              !isAuthenticated ? (
+                <Button variant="ghost" className="hidden xl:flex text-black hover:bg-white/10"
+                  onClick={() => router.push('/auth/signin')}
+                >Sign In</Button>
+              ) : (
+                <Button variant="ghost" className="hidden xl:flex text-black hover:bg-white/10"
+                  onClick={handleLogout}
+                >Sign out</Button>
+              )
+            )}
              <Button
               variant="primary"
               onClick={() => router.push('/registration-form')}

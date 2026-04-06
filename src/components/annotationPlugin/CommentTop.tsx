@@ -7,8 +7,17 @@ import { CommentToggleButton } from './CommentToggleButton'
 import { CommentSettingsButton } from './CommentSettingsButton'
 
 const CommentTop = () => {
+  const [mounted, setMounted] = React.useState(false);
   const { user } = useSelector((state: RootState) => state.auth);
   const showCommentToggle = user?.role === 'admin';
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || user?.role !== "admin") {
+    return null;
+  }
     
   return (
     <>

@@ -39,17 +39,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <>
     <Provider store={store}>
+      <AnnoatationpluginHome/>
       {isDashboardRoute || isAuthRoute ? (
         <div className="relative min-h-screen">{children}</div>
       ) : (
         <>
-        <AnnoatationpluginHome/>
         <div className="relative min-h-screen">
           <motion.div
             className="fixed top-0 left-0 right-0 h-1 bg-linear-to-r from-gold to-gold-2 z-[100] origin-left shadow-[0_0_10px_rgba(197,147,58,0.6)]"
             style={{ scaleX }}
           />
-        <CommentTop/>
+        {/* <CommentTop/> */}
           <TopBar />
           <Header />
 

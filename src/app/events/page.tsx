@@ -1,2 +1,3 @@
-import { UpcomingEvents } from '@/src/pages/UpcomingEvents';
-export default function Page(){ return <UpcomingEvents />; }
+import EventsClient from './EventsClient';
+
+export default function Page(){ return <EventsClient />; }

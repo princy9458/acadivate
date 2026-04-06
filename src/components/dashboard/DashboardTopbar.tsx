@@ -27,7 +27,7 @@ export function DashboardTopbar({ searchPlaceholder }: { searchPlaceholder: stri
             <Icon size={17} />
           </button>
         ))}
-        <div className="ml-1 flex items-center gap-3 rounded-2xl border border-border-light bg-white px-3 py-2 shadow-sh-xs">
+        {/* <div className="ml-1 flex items-center gap-3 rounded-2xl border border-border-light bg-white px-3 py-2 shadow-sh-xs">
           <div className="h-10 w-10 rounded-2xl bg-linear-to-br from-gold via-gold-2 to-primary text-center text-sm font-bold leading-10 text-white">
             CM
           </div>
@@ -35,7 +35,7 @@ export function DashboardTopbar({ searchPlaceholder }: { searchPlaceholder: stri
             <p className="text-sm font-bold text-navy">Cameron</p>
             <p className="text-xs text-text-muted">Operations lead</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

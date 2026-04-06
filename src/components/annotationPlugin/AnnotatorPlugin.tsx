@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { MessageSquarePlus, Settings2, Eye, EyeOff, ScanLine } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Annotation, useAnnotatorStore } from './store';
 import { getCssSelector, getScreenSize } from './utils';
 import { Marker } from './Marker';
@@ -193,27 +194,34 @@ const slug = segments.length === 0
       `}</style>
 
       {/* Floating Action Button & Settings */}
-      <div data-annotator-ui="true" className="fixed bottom-6 right-6 z-[10000] flex flex-col items-end gap-2 sm:hidden">
+      <motion.div 
+        drag
+        dragElastic={0.1}
+        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+        data-annotator-ui="true" 
+        className="fixed bottom-24 right-8 z-[10000] flex flex-col items-end gap-3 cursor-grab active:cursor-grabbing"
+      >
         
         {/* Settings Panel */}
         {isSettingsOpen && isCommentModeActive && (
           <div 
-            className="bg-white rounded-xl shadow-2xl border border-slate-200 p-4 w-64 mb-2 origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
+            className="bg-white rounded-2xl shadow-2xl border border-slate-200 p-5 w-72 mb-2 origin-bottom-right animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300"
             onClick={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()} // Prevent drag when interacting with settings
           >
-            <h3 className="text-sm font-semibold text-slate-800 mb-3 flex items-center gap-2">
-              <Settings2 size={16} />
-              Plugin Settings
+            <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <Settings2 size={18} className="text-indigo-500" />
+              Annotation Settings
             </h3>
             
-            <div className="space-y-3">
-              <label className="flex items-center justify-between cursor-pointer group">
-                <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors flex items-center gap-2">
-                  {settings.showResolved ? <Eye size={14} /> : <EyeOff size={14} />}
+            <div className="space-y-4">
+              <label className="flex items-center justify-between cursor-pointer group p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                <span className="text-[13px] font-medium text-slate-600 group-hover:text-slate-900 transition-colors flex items-center gap-2">
+                  {settings.showResolved ? <Eye size={16} /> : <EyeOff size={16} />}
                   Show Resolved
                 </span>
-                <div className={`w-8 h-4 rounded-full transition-colors relative ${settings.showResolved ? 'bg-indigo-500' : 'bg-slate-300'}`}>
-                  <div className={`absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full transition-transform ${settings.showResolved ? 'translate-x-4' : 'translate-x-0'}`} />
+                <div className={`w-9 h-5 rounded-full transition-colors relative ${settings.showResolved ? 'bg-indigo-500' : 'bg-slate-300'}`}>
+                  <div className={`absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform ${settings.showResolved ? 'translate-x-4' : 'translate-x-0'}`} />
                 </div>
                 <input 
                   type="checkbox" 
@@ -223,13 +231,13 @@ const slug = segments.length === 0
                 />
               </label>
 
-              <label className="flex items-center justify-between cursor-pointer group" title="Highlights elements with data-annotate-id">
-                <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors flex items-center gap-2">
-                  <ScanLine size={14} />
+              <label className="flex items-center justify-between cursor-pointer group p-2 hover:bg-slate-50 rounded-lg transition-colors" title="Highlights elements with data-annotate-id">
+                <span className="text-[13px] font-medium text-slate-600 group-hover:text-slate-900 transition-colors flex items-center gap-2">
+                  <ScanLine size={16} />
                   Calibration Mode
                 </span>
-                <div className={`w-8 h-4 rounded-full transition-colors relative ${settings.calibrationMode ? 'bg-indigo-500' : 'bg-slate-300'}`}>
-                  <div className={`absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full transition-transform ${settings.calibrationMode ? 'translate-x-4' : 'translate-x-0'}`} />
+                <div className={`w-9 h-5 rounded-full transition-colors relative ${settings.calibrationMode ? 'bg-indigo-500' : 'bg-slate-300'}`}>
+                  <div className={`absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform ${settings.calibrationMode ? 'translate-x-4' : 'translate-x-0'}`} />
                 </div>
                 <input 
                   type="checkbox" 
@@ -242,15 +250,15 @@ const slug = segments.length === 0
           </div>
         )}
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <CommentSettingsButton />
 
           <CommentToggleButton
-            variant="floating"
-            className="min-w-[180px]"
+            variant="circular"
+            className="shadow-2xl"
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* Only render markers and capture layer if Comment Mode is ACTIVE */}
       {isCommentModeActive && (

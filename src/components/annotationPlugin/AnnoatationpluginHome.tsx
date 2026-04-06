@@ -10,48 +10,49 @@ import { useSelector } from 'react-redux';
 import { setCurrentPages } from '@/src/hook/pages/pagesSlice';
 
 export const AnnoatationpluginHome = () => {
+  const [mounted, setMounted] = React.useState(false);
+  const pathname = usePathname();
+  const dispatch = useAppDispatch();
+  
+  const { allPages } = useSelector((state: RootState) => state.pages);
+  const { user } = useAppSelector((state: RootState) => state.auth);
+  const { allComments } = useAppSelector((state: RootState) => state.comments);
 
-    //  const pathname= usePathname()
-    //  console.log("pathname",pathname)
+  const segments = pathname?.split("/").filter(Boolean) || [];
+  const slug = segments.length === 0 ? "home" : segments[segments.length - 1];
+  
+  console.log("AnnoatationpluginHome Rendering", { mounted, slug, role: user?.role });
 
-const pathname = usePathname();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-const segments = pathname?.split("/").filter(Boolean) || [];
+  // Update page comments
+  useEffect(() => {
+    if (mounted && allComments && allComments.length > 0 && slug) {
+      const pageData = allComments.filter((comment) => comment.slug === slug);
+      dispatch(setPageComments(pageData));
+    }
+  }, [allComments, slug, mounted, dispatch]);
 
-const slug = segments.length === 0
-  ? "home"
-  : segments[segments.length - 1];
+  // Update current page
+  useEffect(() => {
+    if (mounted && allPages && allPages.length > 0 && slug) {
+      const pageData = allPages.find((page) => page.slug === slug);
+      dispatch(setCurrentPages(pageData ?? null));
+    }
+  }, [allPages, slug, mounted, dispatch]);
 
-console.log("slug", slug);
+  if (!mounted) {
+    return null;
+  }
 
-     const {allPages}=useSelector((state:RootState)=>state.pages)
-      const {user,isAuthenticated} = useAppSelector((state:RootState) => state.auth);
-      const {allComments} = useAppSelector((state:RootState) => state.comments);
-     const dispatch= useAppDispatch()
-     ///updsatev commet page
-      useEffect(() => {
-         if(allComments && allComments.length>0 && slug){
-          const allData= allComments.filter((comment)=>comment.slug===slug)
-          console.log("allData",allData)
-          dispatch(setPageComments(allData))
-         }
-      }, [allComments,slug]);
-
-      // update the current page
-      useEffect(() => {
-        if(allPages && allPages.length>0 && slug){
-          const allData= allPages.find((page)=>page.slug===slug)
-          console.log("current page",allData)
-          dispatch(setCurrentPages(allData??null))
-        }
-      }, [allPages,slug]);
-
+  console.log("AnnoatationpluginHome Component Mounted");
 
   return (
- <>
-
- <GetAllHomepage/>
- { user?.role==="admin" && <AnnotatorPlugin />}
- </>
-  )
-}
+    <>
+      <GetAllHomepage />
+      <AnnotatorPlugin />
+    </>
+  );
+};

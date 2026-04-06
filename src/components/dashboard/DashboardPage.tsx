@@ -25,7 +25,7 @@ export function DashboardPage() {
     <section className="space-y-6">
       <article className="overflow-hidden rounded-[2rem] border border-border-light bg-white shadow-sh-sm">
         <div className="bg-linear-to-r from-navy via-primary-deep to-primary-dark px-6 py-7 text-white lg:px-8 lg:py-9">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex-wrap  flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-gold-3">
                 <Sparkles size={14} />
@@ -60,7 +60,7 @@ export function DashboardPage() {
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[340px]">
+            <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[340px] mt-8">
               {dashboardModuleList.map((module) => (
                 <div
                   key={module.id}

@@ -1,16 +1,31 @@
-
 import type { Metadata } from 'next';
 import './globals.css';
 import { AppShell } from '@/src/components/layout/AppShell';
 import { Toaster } from 'sonner';
-import { AnnoatationpluginHome } from '../components/annotationPlugin/AnnoatationpluginHome';
+import clientPromise from '@/src/lib/mongodb';
 
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const client = await clientPromise;
+    const db = client.db('kalp_tenant_acadivate');
+    const settings = await db.collection('site_settings').findOne({ id: 'global' });
+    
+    return {
+      title: settings?.siteName || 'Acadivate',
+      description: 'Acadivate Research & Innovation Foundation website',
+      icons: {
+        icon: settings?.favicon || '/favicon.ico',
+      },
+    };
+  } catch (e) {
+    return {
+      title: 'Acadivate',
+      description: 'Acadivate Research & Innovation Foundation website',
+    };
+  }
+}
 
-
-// export const metadata: Metadata = {
-//   title: 'Acadivate',
-//   description: 'Acadivate Research & Innovation Foundation website',
-// };
+import { FloatingChat } from '@/src/components/common/FloatingChat';
 
 export default function RootLayout({
   children,
@@ -30,7 +45,6 @@ export default function RootLayout({
       </head>
       <body>
         <AppShell>{children}</AppShell>
-         
         <Toaster position="top-right" richColors />
       </body>
     </html>

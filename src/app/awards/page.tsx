@@ -1,5 +1,5 @@
-import { Awards } from '@/src/pages/Awards';
 import { getSEO } from '@/src/lib/seo';
+import RewardsClient from './RewardsClient';
 
 export async function generateMetadata() {
   const seo = await getSEO('awards');
@@ -9,4 +9,7 @@ export async function generateMetadata() {
     description: seo.metaDescription,
   };
 }
-export default function Page(){ return <Awards />; }
+
+export default function Page() {
+  return <RewardsClient />;
+}

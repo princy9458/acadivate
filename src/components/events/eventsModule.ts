@@ -30,10 +30,18 @@ export const eventsModule: DashboardModuleConfig = {
       required: true,
     },
     {
+      key: 'description',
+      label: 'Short description',
+      type: 'text',
+      placeholder: 'Submit your research paper and join a leading international conference...',
+      required: true,
+      span: 2,
+    },
+    {
       key: 'type',
       label: 'Type',
       type: 'select',
-      options: ['Conference', 'Workshop', 'Forum', 'Summit'],
+      options: ['Conference', 'Workshop', 'Forum', 'Summit', 'Award'],
       placeholder: 'Select event type',
       required: true,
     },
@@ -58,6 +66,13 @@ export const eventsModule: DashboardModuleConfig = {
       placeholder: 'Kuala Lumpur, Malaysia',
       required: true,
       span: 2,
+    },
+    {
+      key: 'tags',
+      label: 'Tags (comma-separated)',
+      type: 'text',
+      placeholder: 'Sustainability, Innovation',
+      required: false,
     },
     {
       key: 'featured',
